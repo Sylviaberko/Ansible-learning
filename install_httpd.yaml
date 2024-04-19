@@ -4,29 +4,17 @@
   become: true
   tasks:
 
-  - name: install httpd package
-    yum:
-      name: httpd
+  - name: install httpd and  chrony package
+    package:
+      name: 
+        - "{{ apache_package }}"
+        - "{{ chrony_package }}"
       state: present
-    when: ansible_distribution == "Centos"
 
-  - name: install chrony package
-    yum:
-      name: chrony
-      state: present     
-    when: ansible_distribution == "Centos"
 
 
   
-  - name: install apache2 package
-    apt:
-      name: apache2
-      state: present
-    when: ansible_distribution == "Ubuntu"
 
-  - name: install chrony package
-    apt:
-      name: chrony
-      state: present
-    when: ansible_distribution == "Ubuntu"
+
+
 

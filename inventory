@@ -1,2 +1,4 @@
-192.168.1.167
+192.168.1.167 apache_package=httpd chrony_package=chrony
+192.168.1.188 apache_package=apache2 chrony_package=chrony
+
 
