@@ -4,6 +4,8 @@
   become: true
   tasks:
 
+  
+
   - name: install httpd package
     yum:
       name: 
@@ -13,14 +15,26 @@
     when: ansible_distribution == "Centos"
 
  
-   - name: install httpd package
-     apt:
+  - name: install httpd package
+    apt:
       name: 
-        - httpd
+        - apache2
         - chrony
       state: present
     when: ansible_distribution == "Ubuntu"
 
 
 
+- hosts: Webserver
+  become: true
+  tasks:
+
+
+  - name: install mariadb package
+    apt:
+      name:
+        - mariadb-server
+        - postfix
+      state: present
+    when: ansible_distribution == "Ubuntu"
 
