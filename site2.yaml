@@ -1,0 +1,49 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  
+
+  - name: install httpd package
+    yum:
+      name: 
+        - httpd
+        - chrony
+      state: present
+    when: ansible_distribution == "Centos"
+
+ 
+  - name: install httpd package
+    apt:
+      name: 
+        - apache2
+        - chrony
+      state: present
+    when: ansible_distribution == "Ubuntu"
+
+
+
+- hosts: Webserver
+  become: true
+  tasks:
+
+
+  - name: install mariadb package
+    apt:
+      name:
+        - mariadb-server
+        - postfix
+      state: present
+    when: ansible_distribution == "Ubuntu"
+
+  - name: copy default html file for site
+    tags: apache,apache2
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+
