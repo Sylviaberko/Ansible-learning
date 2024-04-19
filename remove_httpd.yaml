@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install httpd package
+    yum:
+      name: httpd
+      state: absent
+
+  - name: install chrony package
+    yum:
+      name: chrony
+      state: absent     
