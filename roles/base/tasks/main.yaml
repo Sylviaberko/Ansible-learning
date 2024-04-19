@@ -1,0 +1,33 @@
+- name: create simone user
+  tags: always
+  user:
+    name: simone
+    groups: root
+
+- name: create dancer group
+  tags: always
+  ansible.builtin.group: 
+    name: dancer
+    state: present
+
+- name: create directory for splunk
+  tags: always
+  ansible.builtin.file:
+    path: /opt/splunk
+    state: directory
+
+- name: create group
+  tags: always
+  ansible.builtin.group:
+    name: splunk
+    state: present
+
+
+- name: create splunk user
+  tags: always
+  ansible.builtin.user:
+    name: splunk
+    group: splunk
+    state: present
+
+    
